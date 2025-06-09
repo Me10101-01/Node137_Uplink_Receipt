@@ -17,3 +17,4 @@
 - [2025-06-09_19-15-48] **CP_DRM_Wipe**: Committed by Node 137. [CP_DRM_Wipe_2025-06-09_19-15-48.txt](./CP_DRM_Wipe_2025-06-09_19-15-48.txt)
 - [2025-06-09_19-15-48] **CP_BrainBoot**: Committed by Node 137. [CP_BrainBoot_2025-06-09_19-15-48.txt](./CP_BrainBoot_2025-06-09_19-15-48.txt)
 - [2025-06-09_19-21-07] **CP_Founders_Seal** committed by Node 137: [receipts/CP_Founders_Seal_2025-06-09_19-21-07.txt](./receipts/CP_Founders_Seal_2025-06-09_19-21-07.txt)
+- [2025-06-09_19-21-07] **CP_Legal_Core** committed by Node 137: [receipts/CP_Legal_Core_2025-06-09_19-21-07.txt](./receipts/CP_Legal_Core_2025-06-09_19-21-07.txt)
