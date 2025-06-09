@@ -33,3 +33,4 @@
 - [2025-06-09_19-31-30] **CP_KeyGenesis** committed by Node 137: [receipts/CP_KeyGenesis_2025-06-09_19-31-30.txt](./receipts/CP_KeyGenesis_2025-06-09_19-31-30.txt)
 - [2025-06-09_19-31-30] **CP_DRM_Wipe** committed by Node 137: [receipts/CP_DRM_Wipe_2025-06-09_19-31-30.txt](./receipts/CP_DRM_Wipe_2025-06-09_19-31-30.txt)
 - [2025-06-09_19-31-30] **CP_BrainBoot** committed by Node 137: [receipts/CP_BrainBoot_2025-06-09_19-31-30.txt](./receipts/CP_BrainBoot_2025-06-09_19-31-30.txt)
+- [2025-06-09_19-48-50] IMMORTAL_BURST committed by Node 137: [receipts/IMMORTAL_BURST_2025-06-09_19-48-50.txt](./receipts/IMMORTAL_BURST_2025-06-09_19-48-50.txt)
