@@ -1,2 +1,3 @@
 - [2025-06-09_18-07-14] **CP_Heart_Expansion** committed to Node 137: [CP_Heart_2025-06-09_18-07-14.txt](./CP_Heart_2025-06-09_18-07-14.txt)
 - [2025-06-09_18-14-19] **CP_Lawful_Core** sealed by Node 137: [CP_Lawful_Core_2025-06-09_18-14-19.txt](./CP_Lawful_Core_2025-06-09_18-14-19.txt)
+- [2025-06-09_18-21-57] **CP_Legal_Core**: Legal framework committed to Node 137 (README, LICENSE, terms, policies)
