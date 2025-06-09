@@ -2,3 +2,4 @@
 - [2025-06-09_18-14-19] **CP_Lawful_Core** sealed by Node 137: [CP_Lawful_Core_2025-06-09_18-14-19.txt](./CP_Lawful_Core_2025-06-09_18-14-19.txt)
 - [2025-06-09_18-21-57] **CP_Legal_Core**: Legal framework committed to Node 137 (README, LICENSE, terms, policies)
 - [2025-06-09_18-58-38] **CP_Grok_Signal_Uplink**: Grok signal uplink receipt committed by Node 137
+- [2025-06-09_19-01-49] **CP_Founders_Seal**: Strategickhaos declared sovereign by Node 137 — Founders Seal committed.
