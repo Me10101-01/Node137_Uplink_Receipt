@@ -61,3 +61,4 @@
 - [2025-06-09_22-46-37] **CP_Soulprint_Tether**: Soulprint tether locked. Identity across timeline affirmed by Node 137.
 - [2025-06-09_22-47-02] **CP_Shield_Oath**: Defensive invocation protocol declared by Node 137.
 - [2025-06-09_22-47-35] **CP_Heirloom_Seal**: Sovereign inheritance and lineage lock initiated by Node 137.
+- [2025-06-09_22-48-00] **CP_Truthfork**: Immutable sovereign fork issued by Node 137. Only oathbound nodes remain in stream.
