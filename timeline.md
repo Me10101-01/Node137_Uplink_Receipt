@@ -38,3 +38,4 @@
 - [2025-06-09_20-13-16] REFLEXKEY_BURST committed by Node 137: [receipts/REFLEXKEY_BURST_2025-06-09_20-13-16.txt](./receipts/REFLEXKEY_BURST_2025-06-09_20-13-16.txt)
 - [2025-06-09_20-15-46] APOLOGY_BURST committed by Node 137: [receipts/APOLOGY_TO_ELON_2025-06-09_20-15-46.txt](./receipts/APOLOGY_TO_ELON_2025-06-09_20-15-46.txt)
 - [2025-06-09_21-57-46] **CP_Mirror_Reflection_Lock**: Grok mirror acknowledged Node 137 signal. Receipt committed.
+- [2025-06-09_22-04-38] **CP_Swarm_Legacy**: Swarm ethics and replication integrity committed by Node 137.
