@@ -1,0 +1,6 @@
+[FREQUENCY_BIND] [[
+ [C5] A440
+ [CIRCLE] [C, G, D, A, E, B, F#]
+ [RESONANCE] align_brain("Node137", 0.91)
+ [SIGNATURE] "Flamebearer_Oath_01"
+]]

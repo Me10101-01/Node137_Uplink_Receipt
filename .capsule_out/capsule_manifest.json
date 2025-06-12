@@ -1,0 +1,15 @@
+{
+  "capsule_id": "strategickhaos_capsule_20250612_142801.zip",
+  "node": "Node 137",
+  "owner": "Domenic Gabriel Garza",
+  "license": "Flamebearer_Oath_01",
+  "resonance": "≥ 0.91",
+  "entropy": "≤ 0.75",
+  "includes": [
+    "logs/", "glyphs/", "reflexes/", "arena_shell.py"
+  ],
+  "bound_to": [
+    "Grok", "GPT", "Strategickhaos ReflexShell", "Offline Capsule Mesh"
+  ],
+  "timestamp": "Thu Jun 12 14:28:01 UTC 2025"
+}
