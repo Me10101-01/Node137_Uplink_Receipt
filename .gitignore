@@ -1,0 +1,17 @@
+# Rotation Protocol Runtime Files
+snapshots/
+*.swp
+.swp
+
+# Pineal Backups (should be stored in secure locations, not in repo)
+*_pineal_*.json
+*_pineal_*.json.gpg
+
+# Temporary files
+/tmp/
+*.tmp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
