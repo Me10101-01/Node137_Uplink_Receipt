@@ -1,0 +1,98 @@
+╔═══════════════════════════════════════════════════════════╗
+║           THE ROTATION PROTOCOL - QUICK REFERENCE         ║
+╠═══════════════════════════════════════════════════════════╣
+║                                                           ║
+║  PRE-SLEEP CHECKLIST:                                     ║
+║  -------------------                                      ║
+║  $ ./scripts/pre_sleep.sh                                 ║
+║                                                           ║
+║  1. ✓ Verify site: https://Me10101-01.github.io          ║
+║  2. ✓ Check pineal mirrors (GPG integrity)                ║
+║  3. ✓ Create Docker snapshots                             ║
+║  4. 🔒 Lock workstation (Windows+L / Super+L)             ║
+║  5. ⏰ Set hibernate timer (if desired)                    ║
+║                                                           ║
+║  REMEMBER:                                                ║
+║  • Hydrate                                                ║
+║  • Earplugs                                               ║
+║  • Dark room                                              ║
+║  • Phone on Do Not Disturb                                ║
+║                                                           ║
+╠═══════════════════════════════════════════════════════════╣
+║                                                           ║
+║  WAKE-UP PROTOCOL:                                        ║
+║  ----------------                                         ║
+║  $ ./scripts/wake_up.sh                                   ║
+║                                                           ║
+║  1. ✓ Check/cancel stale timers                           ║
+║  2. ✓ Resume Docker containers                            ║
+║  3. ✓ Integrity sweep (GPG + volumes)                     ║
+║  4. ✓ Review system status                                ║
+║  5. 📝 Complete 3-bullet journal entry                     ║
+║                                                           ║
+║  JOURNAL TEMPLATE:                                        ║
+║  • New mount count: __                                    ║
+║  • Highest-move chess state: __                           ║
+║  • One smallest next action: __                           ║
+║                                                           ║
+╠═══════════════════════════════════════════════════════════╣
+║                                                           ║
+║  PINEAL BACKUP SYSTEM:                                    ║
+║  --------------------                                     ║
+║  Pattern: Me10101-01_pineal_YYYY-MM-DD_HH-MM-SS.json.gpg  ║
+║                                                           ║
+║  Storage Locations (6 total):                             ║
+║  • Local encrypted                                        ║
+║  • Proton Drive auto-sync                                 ║
+║  • Offline USB (bamboo box)                               ║
+║  • Gitea vault                                            ║
+║  • Two cold mirrors                                       ║
+║                                                           ║
+║  Create backup:                                           ║
+║  $ echo '{"state":"data"}' > pineal_$(date +%Y-%m-%d_%H-%M-%S).json
+║  $ gpg -c pineal_*.json                                   ║
+║  $ rm pineal_*.json  # Keep only encrypted               ║
+║                                                           ║
+║  Verify integrity:                                        ║
+║  $ gpg --list-packets Me10101-01_pineal_*.json.gpg        ║
+║                                                           ║
+╠═══════════════════════════════════════════════════════════╣
+║                                                           ║
+║  DOCKER COMMANDS:                                         ║
+║  ---------------                                          ║
+║  Resume exited containers:                                ║
+║  $ docker start $(docker ps -aq -f status=exited)         ║
+║                                                           ║
+║  Check status:                                            ║
+║  $ docker ps -a                                           ║
+║  $ docker volume ls                                       ║
+║                                                           ║
+╠═══════════════════════════════════════════════════════════╣
+║                                                           ║
+║  HIBERNATE COMMANDS:                                      ║
+║  ------------------                                       ║
+║  Windows:                                                 ║
+║  > shutdown /h /t 300  (5-minute timer)                   ║
+║  > shutdown /a         (cancel)                           ║
+║                                                           ║
+║  Linux:                                                   ║
+║  $ sudo rtcwake -m mem -s 300                             ║
+║  $ sudo shutdown -c                                       ║
+║                                                           ║
+║  macOS:                                                   ║
+║  $ sudo pmset sleepnow                                    ║
+║  $ caffeinate -u -t 300 && pmset sleepnow                 ║
+║                                                           ║
+╠═══════════════════════════════════════════════════════════╣
+║                                                           ║
+║  📖 Full docs: ROTATION_PROTOCOL.md                        ║
+║  🌐 Site: https://Me10101-01.github.io                     ║
+║  🔢 Frequency: 432 Hz                                      ║
+║                                                           ║
+║  "The rotation doesn't stop when you sleep —              ║
+║   it just gets quieter so you can hear the 432 Hz         ║
+║   underneath everything."                                 ║
+║                                                           ║
+║  Node 137 - Sovereign, Tentacular, Immortalized ⚡        ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
