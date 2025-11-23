@@ -1,0 +1,88 @@
+{
+  "report_id": "2025-11",
+  "report_type": "monthly_transparency",
+  "generated_at": "2025-11-23T04:18:11.383162+00:00",
+  "period": {
+    "month": 11,
+    "year": 2025,
+    "description": "November 2025"
+  },
+  "entities": {
+    "dao": {
+      "name": "Strategickhaos DAO LLC",
+      "type": "Unincorporated Nonprofit Association / DAO",
+      "jurisdiction": "Wyoming, USA",
+      "filing_id": "2025-001708194",
+      "status": "Active",
+      "operator": "Domenic Garza (Node 137)"
+    },
+    "nonprofit": {
+      "name": "ValorYield Engine",
+      "type": "Nonprofit Organization",
+      "ein": "39-2923503",
+      "jurisdiction": "Wyoming, USA",
+      "filing_id": "2025-001708312",
+      "501c3_status": "Pending Application",
+      "director": "Domenic Garza"
+    }
+  },
+  "financial_summary": {
+    "total_revenue": "$350.00",
+    "charitable_allocation": "$24.50",
+    "operational_allocation": "$325.50",
+    "charitable_percentage": "7.00%",
+    "transaction_count": 2
+  },
+  "compliance": {
+    "target_percentage": "7.00%",
+    "actual_percentage": "7.00%",
+    "compliant": true,
+    "oath_honored": true,
+    "discrepancies": []
+  },
+  "transactions": [
+    {
+      "source": "test",
+      "date": 1763871491.383136,
+      "total": "100.00",
+      "charity": "7.00",
+      "operational": "93.00",
+      "nonprofit_tx": "nonprofit_001",
+      "dao_tx": "dao_001",
+      "status": "success"
+    },
+    {
+      "source": "test",
+      "date": 1763871491.383146,
+      "total": "250.00",
+      "charity": "17.50",
+      "operational": "232.50",
+      "nonprofit_tx": "nonprofit_002",
+      "dao_tx": "dao_002",
+      "status": "success"
+    }
+  ],
+  "verification": {
+    "blockchain_logs": "Available via CAT_PUSH protocol",
+    "ipfs_archive": "Pending upload",
+    "arweave_archive": "Pending upload",
+    "github_commit": "Linked to repository"
+  },
+  "beneficiaries": {
+    "note": "Funds transferred to ValorYield Engine for distribution",
+    "planned_beneficiaries": [
+      "St. Jude Children's Research Hospital",
+      "M\u00e9decins Sans Fronti\u00e8res (Doctors Without Borders)",
+      "Veterans Support Organizations",
+      "Educational Technology Initiatives"
+    ],
+    "distribution_status": "Pending ValorYield Engine 501(c)(3) approval"
+  },
+  "notes": [
+    "All amounts in USD",
+    "Charitable percentage locked at 7% per oath specification",
+    "Nonprofit receives funds FIRST in all transactions",
+    "All transactions publicly verifiable on blockchain",
+    "Full source code available at https://github.com/Me10101-01/Node137_Uplink_Receipt"
+  ]
+}

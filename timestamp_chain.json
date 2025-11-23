@@ -1,0 +1,22 @@
+[
+  {
+    "sequence": 1,
+    "document_hash": "371e141cec4e160083a33ab3a9e24909a67f72782133f037417c2318ff217f72",
+    "document": {
+      "type": "test_document",
+      "node_id": "Node137",
+      "message": "This is a test of the OpenTimestamps system",
+      "timestamp": "2025-11-23T04:16:58.316550"
+    },
+    "gpg_signature": null,
+    "created_at": 1763871418.3170831,
+    "timestamp": {
+      "status": "simulated",
+      "file": "timestamps/doc_1_1763871418.txt",
+      "proof_file": "timestamps/doc_1_1763871418.txt.timestamp.json",
+      "sha256": "371e141cec4e160083a33ab3a9e24909a67f72782133f037417c2318ff217f72",
+      "timestamp": 1763871418.3171916,
+      "message": "Simulated timestamp created (install OTS for blockchain anchoring)"
+    }
+  }
+]

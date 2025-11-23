@@ -1,0 +1,8 @@
+{
+  "type": "simulated_timestamp",
+  "file": "timestamps/test_document_1763871418.txt",
+  "sha256": "371e141cec4e160083a33ab3a9e24909a67f72782133f037417c2318ff217f72",
+  "timestamp": 1763871418.3167949,
+  "timestamp_iso": "2025-11-23T04:16:58.316823",
+  "note": "This is a simulated timestamp. Install OpenTimestamps CLI for real Bitcoin timestamping."
+}
