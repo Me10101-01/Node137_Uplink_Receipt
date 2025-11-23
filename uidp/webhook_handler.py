@@ -382,8 +382,8 @@ class UIDPWebhookHandler:
             # For now, simulate successful transfer
             tx_id = f"nonprofit_{tx_record.source}_{int(time.time())}"
             
-            # Simulate transfer delay
-            time.sleep(0.1)
+            # Note: Remove sleep in production - this is for simulation only
+            # time.sleep(0.1)
             
             logger.info(f"Nonprofit transfer successful: {tx_id}")
             
@@ -415,8 +415,8 @@ class UIDPWebhookHandler:
             # In production, this would call actual payment APIs
             tx_id = f"dao_{tx_record.source}_{int(time.time())}"
             
-            # Simulate transfer delay
-            time.sleep(0.1)
+            # Note: Remove sleep in production - this is for simulation only
+            # time.sleep(0.1)
             
             logger.info(f"DAO transfer successful: {tx_id}")
             
@@ -457,7 +457,8 @@ class UIDPWebhookHandler:
             # 4. Archive in Arweave
             
             # For now, log to file
-            log_file = '/home/runner/work/Node137_Uplink_Receipt/Node137_Uplink_Receipt/logs/uidp_transactions.jsonl'
+            log_dir = os.path.dirname(os.path.abspath(__file__))
+            log_file = os.path.join(log_dir, '..', 'logs', 'uidp_transactions.jsonl')
             os.makedirs(os.path.dirname(log_file), exist_ok=True)
             
             with open(log_file, 'a') as f:

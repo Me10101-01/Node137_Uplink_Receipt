@@ -11,7 +11,7 @@
 ## APPLICANT INFORMATION
 
 **Inventor Name:** Domenic Garza  
-**Inventor ID:** DOM_010101  
+**Inventor ID:** DOM_010101 _(Note: For USPTO filing, replace with SSN or official inventor ID)_  
 **Citizenship:** United States  
 **Residence:** [Address on file]  
 

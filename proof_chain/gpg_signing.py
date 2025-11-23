@@ -84,7 +84,7 @@ class GPGManager:
                 name_comment=f"{comment} - {node_id}",
                 key_type=key_type,
                 key_length=key_length,
-                passphrase=''  # No passphrase for automated signing
+                passphrase=''  # No passphrase for automated signing - PRODUCTION: Use HSM or secure key storage
             )
             
             key = self.gpg.gen_key(input_data)
