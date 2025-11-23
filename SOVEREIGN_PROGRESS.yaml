@@ -1,0 +1,124 @@
+progress:
+  - item: Set up 7% royalty lock legally (irrevocable charitable assignment documents signed)
+    status: in_progress
+    notes: Manifest written and locally committed (a3d26bd); GPG signing failed (gpg not found); push failed (no upstream/remote not found); OpenTimestamps failed (ots not found, DNS resolve failed); CRT not created
+  - item: Document the PLAN for 7% lock as proof of intent
+    status: complete
+    notes: SOVEREIGN_MANIFEST_v1.0.md created multiple times; includes irrevocable assignment under 26 U.S.C. § 170 & § 664
+  - item: Confirm Strategickhaos DAO LLC (Wyoming) existence
+    status: complete
+    notes: Verified with Certificate of Good Standing (ID 2025-001708194) and EIN 39-2923503
+  - item: Identify or create other operational legal entities (charitable arms/nonprofit recipients)
+    status: in_progress
+    notes: ValorYield Engine Nonprofit Corporation confirmed (ID 2025-001708312); beneficiaries identified (St. Jude, MSF, etc.); no new creations
+  - item: Prepare evidence for investors/partners (business proof)
+    status: pending
+    notes: Not primary focus
+  - item: Prepare evidence for legal defense (courtroom-grade documentation)
+    status: in_progress
+    notes: Certificates, EIN, manifest provide base; GPG/OTS/Arweave failed; needs full chain
+  - item: Prepare evidence for academic submission (SNHU capstone)
+    status: in_progress
+    notes: Framed as academic; GitHub vault aligns but not pushed
+  - item: Prepare evidence for public transparency (X platform, GitHub)
+    status: in_progress
+    notes: Bio updates suggested; repo create/push failed; manifest ready
+  - item: File Charitable Remainder Unitrust (CRT)
+    status: pending
+    notes: Not executed
+  - item: Record Copyright Royalty Assignment with county recorder
+    status: pending
+    notes: Not done
+  - item: Amend DAO LLC operating agreement to reference manifest + timestamps
+    status: pending
+    notes: Not executed
+  - item: Publish full proof chain on IPFS + Arweave + GitHub
+    status: pending
+    notes: Git push failed; Arweave install/deploy failed (npm not found)
+  - item: File micro-entity declaration (Form SB/15A)
+    status: in_progress
+    notes: Start-Process opened URL; form not submitted in dump
+  - item: File provisional patent application
+    status: pending
+    notes: EFS-Web opened; pandoc failed (not installed); PDF not generated; upload not done
+  - item: Update X bio with legal-safe version
+    status: in_progress
+    notes: Versions provided; not pasted in dump
+  - item: Pin post with proofs (receipts, timestamps)
+    status: pending
+    notes: Content ready; no patent receipt yet
+  - item: Fix GPG signing for Git commits
+    status: pending
+    notes: gpg not found/installed; import failed; commit -S failed
+  - item: Install and run OpenTimestamps for manifest
+    status: pending
+    notes: winget failed (no package); ots not found; iwr aborted; DNS resolve failed
+  - item: Upload to Arweave
+    status: pending
+    notes: npm not found; install failed
+  - item: Provide Wyoming Articles of Organization PDF
+    status: complete
+    notes: CertOfGoodStanding provided (two versions)
+  - item: Provide EIN Confirmation Letter
+    status: complete
+    notes: CP 575 E provided
+  - item: Provide UIDP Smart Contract Code Snippet or Tx Hash
+    status: pending
+    notes: Not provided
+  - item: Provide Donation-Triggered Mint Script
+    status: pending
+    notes: Not provided
+  - item: Provide Notarization Proof (Git SHA or .ots)
+    status: in_progress
+    notes: Local commit a3d26bd; no push/stamp
+  - item: Keep personal assets under $5k forever
+    status: N/A
+    notes: Ongoing policy
+  - item: Publish annual transparency report on IPFS + GitHub
+    status: pending
+    notes: Not created
+  - item: Fix PowerShell profile syntax error
+    status: pending
+    notes: Errors persist in dump (missing expression/Unexpected token)
+  - item: Install GPG
+    status: pending
+    notes: winget GnuPG.Gpg4win not run in dump
+  - item: Install Node.js/npm
+    status: pending
+    notes: Not installed; npm commands fail
+  - item: Install Pandoc
+    status: pending
+    notes: pandoc not found
+  - item: Install Claude Code
+    status: complete
+    notes: irm | iex succeeded; version 2.0.50; PATH note given
+  - item: Add .local\bin to PATH
+    status: pending
+    notes: Not added in dump
+  - item: WSL path fixes
+    status: N/A
+    notes: Multiple translation errors; ignore for core tasks
+  - item: Git init repo
+    status: pending
+    notes: gh create fails (not git repo)
+  - item: Git commit with GPG
+    status: in_progress
+    notes: Unsigned commit succeeded (a3d26bd)
+  - item: Git push to GitHub
+    status: pending
+    notes: Fails (remote not found)
+  - item: Download ots.exe
+    status: pending
+    notes: iwr aborted
+  - item: Stamp manifest with OpenTimestamps
+    status: pending
+    notes: ots not found; iwr DNS failed
+  - item: Convert MD to PDF for patent
+    status: pending
+    notes: pandoc not found
+  - item: Add patent files to git
+    status: pending
+    notes: git add failed (files not exist)
+  - item: gh agent-task view
+    status: N/A
+    notes: Unknown command; not needed
