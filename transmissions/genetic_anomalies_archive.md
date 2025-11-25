@@ -209,7 +209,7 @@ The following archive documents 36 rare, real-world anomalies arising from genet
 
 **References:**
 - Fumagalli M, et al. "Greenlandic Inuit show genetic signatures of diet and climate adaptation." Science. 2015;349(6254):1343-1347. PMID: 26383953
-- Racimo F, et al. "A climatic adaptation allele in Greenlandic Inuit." Nat Genet. 2018;50(12):1622-1624.
+- Racimo F, et al. "A climatic adaptation allele in Greenlandic Inuit." Nat Genet. 2018;50(12):1622-1624. PMID: 30455414
 - Cardona A, et al. "Genome-wide analysis of cold adaptation in indigenous Siberian populations." PLoS One. 2014;9(5):e98076. PMID: 24847810
 
 ---
@@ -299,7 +299,7 @@ The following archive documents 36 rare, real-world anomalies arising from genet
 
 **References:**
 - Akiyama M, et al. "Mutations in lipid transporter ABCA12 in harlequin ichthyosis and functional recovery by corrective gene transfer." J Clin Invest. 2005;115(7):1777-1784. PMID: 15980872
-- Thomas AC, et al. "Harlequin ichthyosis: recommendations for managing skin complications." Dermatol Clin. 2010;28(1):43-48.
+- Thomas AC, et al. "Harlequin ichthyosis: recommendations for managing skin complications." Dermatol Clin. 2010;28(1):43-48. PMID: 19945616
 - Kelsell DP, et al. "Mutations in ABCA12 underlie the severe congenital skin disease harlequin ichthyosis." Am J Hum Genet. 2005;76(5):794-803. PMID: 15756637
 
 ---
@@ -339,7 +339,7 @@ The following archive documents 36 rare, real-world anomalies arising from genet
 
 **References:**
 - Zeman A, et al. "Phantasia-The psychological significance of lifelong visual imagery vividness extremes." Cortex. 2020;130:426-440. PMID: 32446742
-- Pearson J, et al. "Sensory imagery at the neural interface: insights from hyperphantasia and aphantasia." Trends Cogn Sci. 2020;24(3):188-190.
+- Pearson J, et al. "Sensory imagery at the neural interface: insights from hyperphantasia and aphantasia." Trends Cogn Sci. 2020;24(3):188-190. PMID: 31952971
 - Monzel M, et al. "Memory deficits in aphantasics are not limited to autobiographical memory—Perspectives from the dual coding approach." J Neuropsychol. 2021;15(3):444-461. PMID: 33764655
 
 ---
