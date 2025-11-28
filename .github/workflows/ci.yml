@@ -1,0 +1,40 @@
+name: Silverado X-12 Box Validation CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-design:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install volume calculator dependencies
+        run: pip install numpy
+
+      - name: Verify enclosure volume = ~5.0 cu ft
+        run: python .github/scripts/validate_volume.py
+
+      - name: Check tuning frequency = 30 Hz ± 1 Hz
+        run: python .github/scripts/validate_tuning.py
+
+      - name: Confirm port area ≥ 80 sq in (no chuff gang)
+        run: python .github/scripts/validate_port.py
+
+      - name: Success flex
+        if: success()
+        run: |
+          echo "✅ Design validated – 5.0 cu ft @ 30 Hz, 81 sq in port"
+          echo "Your buddy's bet is now officially deceased 💀🔥"
