@@ -8,7 +8,7 @@
     "source": {
       "type": "string",
       "description": "Origin of the signal (e.g., zapier-outlook, zapier-gmail)",
-      "enum": ["zapier-outlook", "zapier-gmail", "manual", "api"]
+      "enum": ["zapier-outlook", "zapier-gmail", "manual"]
     },
     "type": {
       "type": "string",

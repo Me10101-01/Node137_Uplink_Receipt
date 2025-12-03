@@ -35,11 +35,14 @@
 
 ## ✅ STEP CHECKLIST
 
+> **Note:** This checklist tracks completion status of Zapier configuration steps.  
+> The sections below provide the configuration details for each pending step.
+
 - [x] **Step 1:** Outlook connected (personal)
 - [x] **Step 2:** Trigger verified ("New Email in Outlook 365")
 - [x] **Step 3:** Copilot added checkpoint
-- [ ] **Step 4:** Add AI summarizer
-- [ ] **Step 5:** Add Queen webhook
+- [ ] **Step 4:** Add AI summarizer *(configuration below)*
+- [ ] **Step 5:** Add Queen webhook *(configuration below)*
 - [ ] **Step 6:** Turn Zap ON
 - [ ] **Step 7:** Build Queen endpoint `/signals/academic`
 
@@ -112,7 +115,7 @@ Return only a clean 1–2 sentence summary of:
     "type": {
       "type": "string",
       "description": "Signal classification",
-      "enum": ["academic_email", "deadline_alert", "grade_notification", "course_update"]
+      "enum": ["academic_email", "deadline_alert", "grade_notification", "course_update", "registration_notice", "financial_aid"]
     },
     "summary": {
       "type": "string",
@@ -141,7 +144,7 @@ Return only a clean 1–2 sentence summary of:
 
 Once all steps are configured:
 
-1. Click **"Publish"** or **"Turn on Zap"**
+1. Click **"Publish"** (also labeled **"Turn on Zap"** in some Zapier versions — both refer to the same action)
 2. Zapier Copilot will confirm: *"Your Zap is ready to publish!"*
 3. The outer ring sensor network becomes fully connected to Queen
 
