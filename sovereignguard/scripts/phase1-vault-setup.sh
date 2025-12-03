@@ -187,10 +187,19 @@ injector:
 server:
   enabled: true
   
-  # Dev mode for initial testing - CHANGE FOR PRODUCTION
+  # ╔════════════════════════════════════════════════════════════════════╗
+  # ║  ⚠️  WARNING: DEV MODE - NOT FOR PRODUCTION USE  ⚠️                ║
+  # ║                                                                     ║
+  # ║  This configuration uses dev mode for initial testing only.        ║
+  # ║  For production deployments:                                        ║
+  # ║    1. Set dev.enabled to false                                      ║
+  # ║    2. Enable HA mode with proper storage                            ║
+  # ║    3. Use auto-unseal or Shamir key splitting                       ║
+  # ║    4. Configure proper TLS certificates                             ║
+  # ╚════════════════════════════════════════════════════════════════════╝
   dev:
     enabled: true
-    devRootToken: "root"
+    devRootToken: "root"   # CHANGE THIS - Use vault operator init for production
   
   # Resource configuration
   resources:
@@ -431,6 +440,7 @@ create_secret_structure() {
     log_info "Creating placeholder for queen-app secrets..."
     kubectl exec -n "${NAMESPACE}" "${vault_pod}" -- vault kv put kv/queen-app/config \
         github_app_id="PLACEHOLDER" \
+        github_app_private_key="PLACEHOLDER" \
         github_webhook_secret="PLACEHOLDER" \
         github_client_id="PLACEHOLDER" \
         github_client_secret="PLACEHOLDER"
