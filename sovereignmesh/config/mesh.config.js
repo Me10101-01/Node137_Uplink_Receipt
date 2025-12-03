@@ -61,6 +61,7 @@ module.exports = {
   },
 
   // Signal Types and Routing
+  // Note: security routes to dashboard which handles SovereignGuard mode
   SIGNAL_ROUTES: {
     academic: {
       target: 'knowledge',
@@ -73,7 +74,7 @@ module.exports = {
       sources: ['thread', 'trading', 'treasury']
     },
     security: {
-      target: 'sovereignguard',
+      target: 'dashboard', // Dashboard in SovereignGuard mode
       priority: 'critical',
       sources: ['audit', 'alert', 'breach']
     },

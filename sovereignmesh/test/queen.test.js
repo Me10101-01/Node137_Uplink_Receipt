@@ -25,8 +25,8 @@ describe('Queen Node', () => {
   });
 
   after(() => {
-    // Server cleanup would go here
-    process.exit(0);
+    // Server cleanup handled by test runner
+    // Tests run in isolation, no explicit cleanup needed
   });
 
   describe('Health Endpoints', () => {
@@ -97,7 +97,7 @@ describe('Queen Node', () => {
       assert.strictEqual(response.statusCode, 200);
       const body = JSON.parse(response.body);
       assert.strictEqual(body.success, true);
-      assert.strictEqual(body.target, 'SovereignGuard');
+      assert.strictEqual(body.target, 'Dashboard (SovereignGuard mode)');
     });
   });
 

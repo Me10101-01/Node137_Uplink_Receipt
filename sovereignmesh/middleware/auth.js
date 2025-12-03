@@ -39,10 +39,17 @@ function verifyGitHubWebhook(req, res, next) {
     .update(body)
     .digest('hex');
 
-  const valid = crypto.timingSafeEqual(
-    Buffer.from(signature),
-    Buffer.from(expectedSignature)
-  );
+  // Ensure both buffers have the same length before comparison
+  const signatureBuffer = Buffer.from(signature, 'utf8');
+  const expectedBuffer = Buffer.from(expectedSignature, 'utf8');
+  
+  // If lengths don't match, signatures can't be equal
+  if (signatureBuffer.length !== expectedBuffer.length) {
+    auditLogger.logAuth('github-webhook', false, { reason: 'invalid-signature' });
+    return res.status(401).json({ error: 'Invalid signature' });
+  }
+
+  const valid = crypto.timingSafeEqual(signatureBuffer, expectedBuffer);
 
   if (!valid) {
     auditLogger.logAuth('github-webhook', false, { reason: 'invalid-signature' });

@@ -129,8 +129,9 @@ router.post('/financial', async (req, res) => {
 
 /**
  * POST /signals/security
- * Route security signals to SovereignGuard
+ * Route security signals to Dashboard (SovereignGuard mode)
  * These are treated as critical priority
+ * Note: Dashboard handles security in SovereignGuard mode
  */
 router.post('/security', async (req, res) => {
   try {
@@ -144,18 +145,19 @@ router.post('/security', async (req, res) => {
       priority: 'critical'
     };
 
-    auditLogger.logSignal('security', source, 'sovereignguard', { 
+    auditLogger.logSignal('security', source, 'dashboard', { 
       requestId: req.requestId,
-      priority: 'critical'
+      priority: 'critical',
+      mode: 'sovereignguard'
     });
     
-    // Security signals go to dashboard for now (SovereignGuard = Dashboard security mode)
+    // Dashboard handles security signals in SovereignGuard mode
     const result = await forwardToNode('dashboard', payload);
     
     res.json({
       success: true,
       routed: true,
-      target: 'SovereignGuard',
+      target: 'Dashboard (SovereignGuard mode)',
       result,
       requestId: req.requestId
     });
