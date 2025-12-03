@@ -1,0 +1,268 @@
+# SovereignGuard Configuration
+# Version: 1.0
+# Node: 137
+# Purpose: Security framework configuration for Strategickhaos Swarm
+
+version: "1.0"
+name: "SovereignGuard"
+node: 137
+owner: "Strategickhaos"
+
+# Global Security Settings
+global:
+  log_level: "INFO"
+  audit_enabled: true
+  metrics_enabled: true
+  tls_enabled: true
+
+# Vault Configuration
+vault:
+  # Installation Settings
+  install:
+    method: "helm"
+    chart: "hashicorp/vault"
+    chart_version: "0.27.0"
+    namespace: "vault"
+    release_name: "vault"
+  
+  # Server Configuration
+  server:
+    mode: "ha"          # standalone, ha, or dev
+    replicas: 3
+    storage: "integrated"   # raft integrated storage
+    
+    # Resource Limits
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "250m"
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+    
+    # Data Persistence
+    data_storage:
+      size: "10Gi"
+      storage_class: "standard"   # adjust for your cluster
+    
+    # Audit Storage
+    audit_storage:
+      size: "5Gi"
+      storage_class: "standard"
+  
+  # UI Configuration
+  ui:
+    enabled: true
+    service_type: "ClusterIP"    # ClusterIP, LoadBalancer, or NodePort
+  
+  # Ingress Configuration (optional)
+  ingress:
+    enabled: false
+    hosts:
+      - "vault.strategickhaos.ai"
+    tls:
+      enabled: true
+      secret_name: "vault-tls"
+  
+  # Secret Engines
+  secret_engines:
+    kv:
+      enabled: true
+      version: 2
+      path: "kv"
+    ssh:
+      enabled: true
+      path: "ssh"
+    pki:
+      enabled: true
+      path: "pki"
+    database:
+      enabled: false    # enable when DB integration needed
+      path: "database"
+    transit:
+      enabled: true
+      path: "transit"
+  
+  # Authentication Methods
+  auth_methods:
+    kubernetes:
+      enabled: true
+      path: "kubernetes"
+    token:
+      enabled: true
+    approle:
+      enabled: true
+      path: "approle"
+
+# Policies
+policies:
+  queen_app:
+    name: "queen-app-policy"
+    paths:
+      - path: "kv/data/queen-app/*"
+        capabilities: ["read", "list"]
+      - path: "kv/metadata/queen-app/*"
+        capabilities: ["read", "list"]
+  
+  swarm_runner:
+    name: "swarm-runner-policy"
+    paths:
+      - path: "kv/data/swarm-runners/*"
+        capabilities: ["read"]
+      - path: "ssh/sign/runner-role"
+        capabilities: ["create", "update"]
+  
+  admin:
+    name: "admin-policy"
+    paths:
+      - path: "*"
+        capabilities: ["create", "read", "update", "delete", "list", "sudo"]
+
+# Secret Paths Structure
+secret_paths:
+  queen_app:
+    base: "kv/queen-app"
+    secrets:
+      - name: "github_app_id"
+        description: "GitHub App ID"
+      - name: "github_app_private_key"
+        description: "GitHub App private key (PEM format)"
+      - name: "github_webhook_secret"
+        description: "GitHub webhook secret for signature verification"
+      - name: "github_client_id"
+        description: "OAuth client ID"
+      - name: "github_client_secret"
+        description: "OAuth client secret"
+  
+  swarm_runners:
+    base: "kv/swarm-runners"
+    secrets:
+      - name: "runner_registration_token"
+        description: "Token for registering new runners"
+      - name: "runner_auth_token"
+        description: "Authentication token for runner operations"
+  
+  registry:
+    base: "kv/registry"
+    secrets:
+      - name: "username"
+        description: "Container registry username"
+      - name: "password"
+        description: "Container registry password"
+      - name: "server"
+        description: "Container registry server URL"
+
+# SSH Configuration
+ssh:
+  roles:
+    runner_role:
+      key_type: "ca"
+      allowed_users: "*"
+      allowed_extensions: "permit-pty,permit-agent-forwarding"
+      default_extensions:
+        permit-pty: ""
+      ttl: "1h"
+      max_ttl: "24h"
+
+# PKI Configuration
+pki:
+  root_ca:
+    common_name: "Strategickhaos Root CA"
+    ttl: "87600h"   # 10 years
+  
+  intermediate_ca:
+    common_name: "Strategickhaos Intermediate CA"
+    ttl: "43800h"   # 5 years
+  
+  roles:
+    server:
+      allowed_domains:
+        - "strategickhaos.ai"
+        - "svc.cluster.local"
+      allow_subdomains: true
+      max_ttl: "720h"   # 30 days
+
+# Audit Configuration
+audit:
+  enabled: true
+  backends:
+    - type: "file"
+      path: "/vault/logs/audit.log"
+      options:
+        log_raw: false
+        hmac_accessor: true
+    
+    # Future: Syslog to centralized logging
+    # - type: "syslog"
+    #   path: "syslog"
+    #   options:
+    #     facility: "LOCAL7"
+    #     tag: "vault"
+
+# Monitoring Integration
+monitoring:
+  prometheus:
+    enabled: true
+    service_monitor: true
+    path: "/v1/sys/metrics"
+    params:
+      format: "prometheus"
+  
+  # Future: Grafana dashboards
+  grafana:
+    enabled: false
+    dashboards:
+      - "vault-overview"
+      - "vault-secrets"
+
+# Health Check Configuration
+health_checks:
+  endpoint: "/v1/sys/health"
+  interval: "30s"
+  timeout: "10s"
+  retries: 3
+
+# Backup Configuration
+backup:
+  enabled: true
+  schedule: "0 2 * * *"   # Daily at 2 AM
+  retention: 30            # Keep 30 days
+  storage:
+    type: "gcs"            # gcs, s3, or local
+    bucket: "strategickhaos-vault-backups"
+    prefix: "vault-snapshots/"
+
+# Disaster Recovery
+disaster_recovery:
+  enabled: true
+  standby_cluster: false   # Enable when DR cluster is ready
+  replication_type: "performance"   # performance or dr
+
+# Network Policies
+network:
+  pod_security:
+    enabled: true
+    policy: "restricted"
+  
+  network_policy:
+    enabled: true
+    ingress:
+      - from:
+          - namespaceSelector:
+              matchLabels:
+                sovereignguard-access: "true"
+    egress:
+      - to:
+          - namespaceSelector: {}
+
+# Labels and Annotations
+metadata:
+  labels:
+    app.kubernetes.io/name: "vault"
+    app.kubernetes.io/part-of: "sovereignguard"
+    strategickhaos.ai/node: "137"
+    strategickhaos.ai/version: "1.0"
+  
+  annotations:
+    strategickhaos.ai/description: "SovereignGuard Vault Instance"
+    strategickhaos.ai/owner: "node-137"

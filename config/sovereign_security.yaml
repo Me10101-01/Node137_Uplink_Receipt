@@ -1,0 +1,47 @@
+# SovereignGuard Security Integration Configuration
+# Version: 1.0
+# Node: 137
+# Purpose: Glue config that ties SovereignGuard bundle into the Strategickhaos empire
+
+sovereign_security:
+  package: "SovereignGuard v1.0"
+  source_repo: "Strategickhaos-Swarm-Intelligence/strategickhaos-security"
+  artifacts:
+    architecture_doc: "sovereignguard/docs/ARCHITECTURE.md"
+    config_yaml: "sovereignguard/config/sovereignguard.yaml"
+    phase1_script: "sovereignguard/scripts/phase1-vault-setup.sh"
+
+  phase1_vault:
+    target_cluster: "primary_swarm_gke_autopilot"   # adjust to real context name
+    namespace: "vault"
+    status: "planned"        # flip to 'deployed' once script completes
+    feeds:
+      - "Queen App secrets (App ID, private key, webhook secret, OAuth client secret)"
+      - "Swarm runner tokens"
+      - "Registry credentials"
+
+  integration_points:
+    queen_app:
+      uses_vault_for:
+        - "App auth private key"
+        - "webhook secret verification"
+        - "installation access tokens (optionally)"
+      code_location: "queen-gateway/queen.js"
+
+    swarm_core:
+      workflows:
+        - "hello-swarm.yml"
+      requirements:
+        - "Vault health checks"
+        - "future: fetch secrets from Vault instead of env"
+
+    observability_stack:
+      future:
+        - "Vault audit logs shipped to Loki"
+        - "Security metrics to Prometheus/Grafana"
+
+  next_actions:
+    - "Check phase1-vault-setup.sh against real cluster & domain names."
+    - "Run Phase 1 and confirm Vault is healthy."
+    - "Move Queen + runner secrets into Vault and update config."
+    - "Update workflows in swarm-core to depend on Vault availability."
