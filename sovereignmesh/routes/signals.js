@@ -11,7 +11,11 @@
 const express = require('express');
 const router = express.Router();
 const config = require('../config/mesh.config');
+const { signalLimiter } = require('../middleware/rateLimit');
 const auditLogger = require('../utils/auditLogger');
+
+// Apply rate limiting to all signal routes
+router.use(signalLimiter);
 
 /**
  * Forward signal to target node

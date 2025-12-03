@@ -11,7 +11,11 @@ const express = require('express');
 const router = express.Router();
 const config = require('../config/mesh.config');
 const auth = require('../middleware/auth');
+const { webhookLimiter } = require('../middleware/rateLimit');
 const auditLogger = require('../utils/auditLogger');
+
+// Apply rate limiting to all webhook routes
+router.use(webhookLimiter);
 
 /**
  * Classify a GitHub event to determine routing
