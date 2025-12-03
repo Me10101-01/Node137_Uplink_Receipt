@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Environment files (except example)
+.env
+.env.local
+.env.production
+
+# Private keys
+*.pem
+*.key
+
+# Logs (keep .gitkeep)
+logs/*.log
+logs/*.json
+!logs/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+
+# Build artifacts
+dist/
+build/

@@ -1,0 +1,26 @@
+# Node.js
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Private keys
+*.pem
+*.key
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+dist/
+build/

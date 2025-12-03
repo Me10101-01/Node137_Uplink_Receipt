@@ -1,0 +1,9 @@
+# SovereignMesh Logs Directory
+# Audit trail files are stored here
+
+This directory contains:
+- audit.log - General audit trail
+- signals.log - Signal routing events  
+- access.log - HTTP access logs
+
+These files are git-ignored for security.
