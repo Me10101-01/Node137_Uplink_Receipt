@@ -334,6 +334,12 @@ security_audit:
 
 ### Chaos Injection Framework
 
+**⚠️ Security Note**: The following code examples demonstrate concepts. In production:
+- Validate all inputs
+- Use proper parameter passing (avoid string interpolation in shell commands)
+- Implement proper authentication and authorization
+- Run chaos tests in isolated environments only
+
 ```python
 # tools/chaos_injector.py
 

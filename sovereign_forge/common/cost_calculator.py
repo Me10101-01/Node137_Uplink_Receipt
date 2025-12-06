@@ -31,9 +31,10 @@ class SovereignReplacement:
 
 
 class CostCalculator:
-    def __init__(self):
+    def __init__(self, hourly_rate: float = 50.0):
         self.vendors = []
         self.infrastructure_base_cost = 132.0  # Annual base infra cost
+        self.hourly_rate = hourly_rate  # Development cost per hour
     
     def add_vendor(self, name: str, annual_cost: float, users: int = 1, plan: str = ""):
         """Add a vendor to the cost analysis"""
@@ -45,8 +46,8 @@ class CostCalculator:
         annual_savings = total_vendor_cost - self.infrastructure_base_cost
         savings_percentage = (annual_savings / total_vendor_cost * 100) if total_vendor_cost > 0 else 0
         
-        # Calculate ROI (assuming $50/hr development cost)
-        development_cost = development_hours * 50
+        # Calculate ROI
+        development_cost = development_hours * self.hourly_rate
         roi_months = (development_cost / annual_savings * 12) if annual_savings > 0 else 0
         
         return {
@@ -148,10 +149,16 @@ def main():
         default='markdown',
         help="Output format"
     )
+    parser.add_argument(
+        '--hourly-rate',
+        type=float,
+        default=50.0,
+        help="Development cost per hour (default: $50)"
+    )
     
     args = parser.parse_args()
     
-    calculator = CostCalculator()
+    calculator = CostCalculator(hourly_rate=args.hourly_rate)
     
     if args.config:
         # Load from config file

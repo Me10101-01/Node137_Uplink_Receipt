@@ -437,6 +437,12 @@ My Second Brain
 
 ## Notion Migration Path
 
+**⚠️ Security Note**: When handling file uploads and zip extractions:
+- Validate file paths to prevent directory traversal
+- Use secure temporary directories
+- Verify zip contents before extraction
+- Implement file size limits
+
 ### 1. Export from Notion
 
 ```
