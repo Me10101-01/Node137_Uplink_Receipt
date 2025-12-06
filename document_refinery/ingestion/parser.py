@@ -102,7 +102,10 @@ class DocumentParser:
             with open(path, 'r', encoding='utf-8') as f:
                 return f.read()
         else:
-            raise ValueError(f"Unsupported file type: {suffix}")
+            raise ValueError(
+                f"Unsupported file type: {suffix}. "
+                f"Supported types: .txt, .md"
+            )
     
     def _extract_title(self, content: str, path: Path) -> Optional[str]:
         """Extract document title from content or filename."""

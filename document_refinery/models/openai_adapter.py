@@ -33,7 +33,7 @@ class OpenAIAdapter(ModelAdapter):
         except ImportError:
             raise ImportError(
                 "OpenAI support requires: pip install openai\n"
-                "Or install with: pip install strategickhaos-document-refinery[openai]"
+                "Or install with optional dependencies: pip install -e '.[openai]'"
             )
     
     def generate(

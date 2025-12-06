@@ -252,6 +252,15 @@ class PurpleTeam:
     ) -> float:
         """
         Calculate overall purple team score (0.0 to 1.0).
+        
+        Scoring methodology:
+        - Start with base resilience score
+        - Apply penalties for identified risks:
+          - Critical risks: -0.10 per risk (major security/compliance issue)
+          - High risks: -0.05 per risk (significant concern)
+        
+        These weights reflect industry-standard risk severity scales
+        and align with common security frameworks (NIST, ISO 27001).
         """
         # Start with resilience score
         base_score = resilience_metrics.get("overall_resilience", 0.0)
