@@ -1,0 +1,20 @@
+# k8s/chaos-engine-cronjob.yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: strategickhaos-chaos-engine
+  namespace: treasury
+spec:
+  schedule: "0 * * * *"  # run hourly in sandbox
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: chaos-runner
+              image: ghcr.io/your-org/treasury-resilience:latest
+              env:
+                - name: CHAOS_PROBABILITY
+                  value: "0.15"
+              command: ["python", "-m", "treasury_resilience.run_chaos_once"]
