@@ -71,15 +71,15 @@ class WhaleWeaverSynthesizer:
         "[950]": 78,   # D5 - Recon Init
         "[951]": 79,   # D5# - Recon Scan
         "[952]": 80,   # E5 - Recon Log
-        "[997]": 85,   # G5# - Glyphos Resonance
-        "[998]": 86,   # A5 - Glyphos Cascade
-        "[999]": 87,   # A5# - Glyphos Unity
-        "[1000]": 84,  # G5 - Starlink Bridge
-        "[1001]": 85,  # G5# - Starlink Sync
-        "[1002]": 86,  # A5 - Starlink Uplink
+        "[997]": 82,   # F5# - Glyphos Resonance
+        "[998]": 83,   # G5 - Glyphos Cascade
+        "[999]": 84,   # G5# - Glyphos Unity
+        "[1000]": 85,  # A5 - Starlink Bridge
+        "[1001]": 86,  # A5# - Starlink Sync
+        "[1002]": 87,  # B5 - Starlink Uplink
         "[2000]": 0,   # A0 - Whale Weaver Init
         "[2001]": 44,  # B2 - Whale Weaver Sync
-        "[2002]": 87,  # A5# - Whale Weaver Pulse
+        "[2002]": 81,  # F5 - Whale Weaver Pulse (unique from others)
     }
     
     # Glyph code to binding code mapping

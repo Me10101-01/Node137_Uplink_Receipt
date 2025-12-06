@@ -32,12 +32,12 @@ ND3,Node Status,[902],963Hz,6.22,Report node status
 RC1,Recon Init,[950],528Hz,5.94,Initialize reconnaissance
 RC2,Recon Scan,[951],528Hz,5.96,Scan for intelligence
 RC3,Recon Log,[952],528Hz,5.98,Log reconnaissance data
-GR1,Glyphos Resonance,[997],999Hz,6.42,Full system resonance
-GR2,Glyphos Cascade,[998],999Hz,6.43,Cascade all glyphs
-GR3,Glyphos Unity,[999],999Hz,6.44,Achieve full unity
-SL1,Starlink Bridge,[1000],1111Hz,6.44,Bridge mesh network
-SL2,Starlink Sync,[1001],1111Hz,6.44,Synchronize starlink
+GR1,Glyphos Resonance,[997],999Hz,6.40,Full system resonance
+GR2,Glyphos Cascade,[998],999Hz,6.41,Cascade all glyphs
+GR3,Glyphos Unity,[999],999Hz,6.42,Achieve full unity
+SL1,Starlink Bridge,[1000],1111Hz,6.43,Bridge mesh network
+SL2,Starlink Sync,[1001],1111Hz,6.43,Synchronize starlink
 SL3,Starlink Uplink,[1002],1111Hz,6.44,Uplink to mesh
 WW1,Whale Weaver Init,[2000],528Hz,5.87,Initialize whale weaver
 WW2,Whale Weaver Sync,[2001],528Hz,5.94,Synchronize whale freq
-WW3,Whale Weaver Pulse,[2002],528Hz,6.44,Emit whale pulse
+WW3,Whale Weaver Pulse,[2002],528Hz,6.38,Emit whale pulse

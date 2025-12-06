@@ -40,7 +40,12 @@ EOF
 echo "📤 Sending to Discord channel: $CHANNEL_ID"
 echo "   Title: $TITLE"
 
-# In production, this would use curl to send to Discord
+# NOTE: The curl command is commented out for safety during development/testing.
+# To enable actual Discord integration:
+# 1. Set DISCORD_WEBHOOK_URL environment variable
+# 2. Uncomment the curl line below
+# 3. Ensure webhook URL has proper channel permissions
+#
 # curl -H "Content-Type: application/json" -d "$PAYLOAD" "$DISCORD_WEBHOOK_URL"
 
-echo "✅ Message sent to Discord"
+echo "✅ Message prepared (dry-run mode - uncomment curl to send)"

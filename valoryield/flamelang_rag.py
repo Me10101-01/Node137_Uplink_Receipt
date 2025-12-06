@@ -199,13 +199,18 @@ class FlameLangRAG:
             context = self.get_context_for_frequency(frequency)
         
         # Simulate RAG query execution
-        # In production, this would connect to Qdrant and execute embeddings
+        # NOTE: This is a skeleton implementation for demonstration.
+        # In production, this would:
+        # 1. Connect to Qdrant vector database at self.vector_db
+        # 2. Generate embeddings using self.embedding_model
+        # 3. Execute semantic search on self.collection
+        # 4. Calculate actual hallucination_score based on source verification
         result = RAGResult(
             query=natural_query,
             context=context,
             sources=sources[:3] if sources else ["general_knowledge"],
-            hallucination_score=0.015,  # Below enterprise threshold
-            confidence=0.95
+            hallucination_score=0.015,  # Simulated value - replace with actual calculation
+            confidence=0.95  # Simulated value - replace with retrieval confidence
         )
         
         return result

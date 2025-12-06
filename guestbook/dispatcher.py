@@ -192,13 +192,21 @@ class Guestbook1Dispatcher:
             
         Returns:
             DispatchResult with execution results
+        
+        Note:
+            This is a skeleton implementation. In production, this would:
+            1. Connect to the actual AI node (GetLense, JetRider, or AI Cluster)
+            2. Submit the task payload for processing
+            3. Await and capture real execution output
+            4. Measure actual execution time for load balancing decisions
         """
         start_time = time.time()
         
-        # Simulate task execution based on node type
+        # Skeleton: Simulate task execution based on node type
+        # TODO: Replace with actual node communication (gRPC, HTTP, etc.)
         node_config = self.NODES[task.node_type]
         
-        # Generate simulated output
+        # Generate simulated output (replace with actual node response)
         output = f"[{node_config['name']}] Executed: {task.description}"
         
         execution_time = time.time() - start_time
