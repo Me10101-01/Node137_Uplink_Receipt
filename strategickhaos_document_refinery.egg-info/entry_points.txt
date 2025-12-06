@@ -1,2 +1,0 @@
-[console_scripts]
-sk-refinery = document_refinery.cli.main:cli

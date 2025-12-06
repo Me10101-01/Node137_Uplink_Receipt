@@ -1,0 +1,11 @@
+
+# Python egg info
+*.egg-info/
+__pycache__/
+*.py[cod]
+build/
+dist/
+
+# Test output
+/tmp/
+*.log
