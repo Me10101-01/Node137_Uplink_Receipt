@@ -41,8 +41,8 @@ env/
 .coverage
 htmlcov/
 
-# Chaos reports (optional - keep if you want them in git)
-# chaos_report_*.md
+# Chaos reports (generated artifacts)
+chaos_report_*.md
 
 # OS
 .DS_Store
