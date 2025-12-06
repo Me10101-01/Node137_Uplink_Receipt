@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 class RevenueDistributionService:
     """
     Handles revenue splits such as:
-      - 93% → Strategickhaos operations
+      - 93% → StrategicKhaos operations
       - 7%  → ValorYield Engine (501(c)(3))
     with optional chaos testing to validate resilience.
     """

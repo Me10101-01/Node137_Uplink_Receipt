@@ -19,7 +19,7 @@ from typing import Dict, List, Optional, Tuple
 logger = logging.getLogger(__name__)
 
 
-class ChaosEvent(str, Enum):
+class ChaosEvent(Enum):
     BANK_FREEZE = "bank_freeze_simulation"
     ACH_FAILURE = "ach_failure_simulation"
     NATS_OUTAGE = "nats_outage_simulation"

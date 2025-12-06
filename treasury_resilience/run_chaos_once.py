@@ -12,6 +12,7 @@ import argparse
 import asyncio
 import logging
 import sys
+import time
 from typing import Dict, List
 
 from .chaos_injector import FinancialChaosEngine
@@ -69,7 +70,7 @@ async def run_chaos_test(iterations: int, chaos_probability: float) -> None:
     print("\n" + report)
 
     # Save report to file
-    report_filename = f"chaos_report_{asyncio.get_event_loop().time():.0f}.md"
+    report_filename = f"chaos_report_{time.time():.0f}.md"
     with open(report_filename, "w") as f:
         f.write(report)
     logger.info("📄 Report saved to: %s", report_filename)
