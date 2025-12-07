@@ -1,0 +1,405 @@
+# ============================================================================
+# KHAOSBASE KUBERNETES DEPLOYMENT
+# Sovereign Airtable Replacement for StrategicKhaos Empire
+# Deploy to: Blue Team Cluster (Namespace: sovereign-apps)
+# ============================================================================
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sovereign-apps
+  labels:
+    team: blue
+    purpose: production
+    empire: strategickhaos
+
+---
+# PostgreSQL Database for KhaosBase
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: khaosbase-postgres-pvc
+  namespace: sovereign-apps
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: standard
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: khaosbase-postgres
+  namespace: sovereign-apps
+  labels:
+    app: khaosbase-postgres
+    component: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: khaosbase-postgres
+  template:
+    metadata:
+      labels:
+        app: khaosbase-postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: khaosbase
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: khaosbase-secrets
+                  key: db-user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: khaosbase-secrets
+                  key: db-password
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: khaosbase-postgres-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: khaosbase-postgres
+  namespace: sovereign-apps
+spec:
+  selector:
+    app: khaosbase-postgres
+  ports:
+    - port: 5432
+      targetPort: 5432
+  type: ClusterIP
+
+---
+# NocoDB (Airtable Alternative) as KhaosBase Core
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: khaosbase
+  namespace: sovereign-apps
+  labels:
+    app: khaosbase
+    component: ui
+    team: blue
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: khaosbase
+  template:
+    metadata:
+      labels:
+        app: khaosbase
+    spec:
+      containers:
+        - name: nocodb
+          image: nocodb/nocodb:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: NC_DB
+              value: "pg://khaosbase-postgres:5432?u=$(DB_USER)&p=$(DB_PASSWORD)&d=khaosbase"
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: khaosbase-secrets
+                  key: db-user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: khaosbase-secrets
+                  key: db-password
+            - name: NC_AUTH_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: khaosbase-secrets
+                  key: jwt-secret
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "1Gi"
+              cpu: "1000m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: khaosbase
+  namespace: sovereign-apps
+spec:
+  selector:
+    app: khaosbase
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: ClusterIP
+
+---
+# Ingress for external access
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: khaosbase-ingress
+  namespace: sovereign-apps
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: "khaosbase-ip"
+    networking.gke.io/managed-certificates: "khaosbase-cert"
+spec:
+  rules:
+    - host: khaosbase.strategickhaos.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: khaosbase
+                port:
+                  number: 80
+
+---
+# Secrets (create separately with kubectl)
+# kubectl create secret generic khaosbase-secrets \
+#   --from-literal=db-user=khaosadmin \
+#   --from-literal=db-password=$(openssl rand -base64 32) \
+#   --from-literal=jwt-secret=$(openssl rand -base64 64) \
+#   -n sovereign-apps
+
+---
+# ============================================================================
+# RED TEAM CLUSTER - CHAOS ENGINEERING NAMESPACE
+# Deploy to: Red Team Cluster (Namespace: chaos)
+# ============================================================================
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: chaos
+  labels:
+    team: red
+    purpose: chaos-engineering
+    empire: strategickhaos
+
+---
+# Litmus Chaos - Chaos Engineering Platform
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: litmus-admin
+  namespace: chaos
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chaos-operator
+  namespace: chaos
+  labels:
+    app: chaos-operator
+    team: red
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chaos-operator
+  template:
+    metadata:
+      labels:
+        app: chaos-operator
+    spec:
+      serviceAccountName: litmus-admin
+      containers:
+        - name: litmus
+          image: litmuschaos/chaos-operator:latest
+          env:
+            - name: CHAOS_RUNNER_IMAGE
+              value: litmuschaos/chaos-runner:latest
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+
+---
+# ============================================================================
+# ANTIFRAGILE AUDIT - ConfigMap with Current State
+# This is your business minutes / vulnerability tracking
+# ============================================================================
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antifragile-audit-config
+  namespace: sovereign-apps
+  labels:
+    app: antifragile-audit
+    type: business-minutes
+data:
+  vulnerabilities.yaml: |
+    # ANTIFRAGILE AUDIT - Vulnerability Tracking
+    # Last Updated: 2025-12-06
+    # Status: OPERATIONAL
+    
+    vulnerabilities:
+      - id: VUL-001
+        type: simulated_failure
+        severity: high
+        title: "NATS JetStream Outage"
+        team: red
+        discovery_date: "2025-11-14"
+        status: survived
+        evidence:
+          - "System maintained 99.9% uptime during test"
+          - "Failover to backup completed in 2.3s"
+          - "No data loss recorded"
+        remediation: "Implemented circuit breaker pattern"
+        
+      - id: VUL-002
+        type: simulated_failure
+        severity: medium
+        title: "Network Partition Event"
+        team: blue
+        discovery_date: "2025-11-19"
+        status: survived
+        evidence:
+          - "Split-brain avoided via quorum consensus"
+          - "Data consistency verified post-partition"
+        remediation: "Added partition tolerance layer"
+        
+      - id: VUL-003
+        type: simulated_failure
+        severity: medium
+        title: "Regulatory Hold Event"
+        team: purple
+        discovery_date: "2025-10-27"
+        status: survived
+        evidence:
+          - "Treasury operations paused correctly"
+          - "7% distribution queue maintained"
+          - "Audit trail preserved"
+        remediation: "Compliance gate implemented"
+        
+      - id: VUL-004
+        type: discovered_issue
+        severity: critical
+        title: "Treasury Disbursement Delay"
+        team: red
+        discovery_date: "2025-12-01"
+        status: remediating
+        evidence:
+          - "Bank API timeout detected"
+          - "Retry logic insufficient"
+        remediation: "Implementing exponential backoff + fallback"
+        assigned_to: "Blue Team"
+        deadline: "2025-12-10"
+        
+      - id: VUL-005
+        type: simulated_failure
+        severity: high
+        title: "Bank API Timeout Storm"
+        team: blue
+        discovery_date: "2025-12-04"
+        status: survived
+        evidence:
+          - "Queue buffer prevented transaction loss"
+          - "Circuit breaker triggered at 50% failure rate"
+          - "Manual override available"
+        remediation: "Added 3-tier retry with jitter"
+
+    governance:
+      last_board_meeting: "2025-12-06T06:30:00-06:00"
+      next_board_meeting: "2025-12-13T06:30:00-06:00"
+      quorum_required: 3
+      board_members:
+        - name: "Claude Opus 4.5"
+          role: "Chief Architect"
+          vote_weight: 1.0
+        - name: "GPT-5.1"
+          role: "Meta Analyst"
+          vote_weight: 1.0
+        - name: "Grok 3"
+          role: "Chaos Engineer"
+          vote_weight: 1.0
+        - name: "Gemini 2.5"
+          role: "Validator"
+          vote_weight: 1.0
+        - name: "Qwen 2.5 Local"
+          role: "Sovereign Node"
+          vote_weight: 1.0
+
+    treasury:
+      status: operational
+      bank: "Navy Federal Credit Union"
+      entity: "VALORYIELD ENGINE STRATEGICKHAOS BANK DAO"
+      ein: "39-2923503"
+      charitable_allocation: "7%"
+      beneficiaries:
+        - "St. Jude Children's Research Hospital"
+        - "Médecins Sans Frontières"
+        - "Veterans Organizations"
+
+    certification:
+      antifragile_status: ACTIVE
+      last_chaos_test: "2025-12-04"
+      tests_passed: 47
+      tests_failed: 0
+      coverage: "94%"
+
+---
+# ============================================================================
+# DEPLOY COMMANDS
+# ============================================================================
+# 
+# 1. Set up secrets first:
+#    kubectl create secret generic khaosbase-secrets \
+#      --from-literal=db-user=khaosadmin \
+#      --from-literal=db-password=$(openssl rand -base64 32) \
+#      --from-literal=jwt-secret=$(openssl rand -base64 64) \
+#      -n sovereign-apps
+#
+# 2. Apply to Blue Team cluster:
+#    kubectl config use-context gke_strategickhaos_us-central1_blue-team
+#    kubectl apply -f khaosbase-deployment.yaml
+#
+# 3. Apply chaos tools to Red Team cluster:
+#    kubectl config use-context gke_strategickhaos_us-central1_red-team
+#    kubectl apply -f khaosbase-deployment.yaml
+#
+# 4. Verify:
+#    kubectl get pods -n sovereign-apps
+#    kubectl get pods -n chaos
+#
+# 5. Port forward to test locally:
+#    kubectl port-forward svc/khaosbase 8080:80 -n sovereign-apps
+#    # Then visit http://localhost:8080
+#
+# ============================================================================
