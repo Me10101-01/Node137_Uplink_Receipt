@@ -2,7 +2,7 @@
 """
 ============================================================================
 🧬 EMPIRE DNA EVOLUTION TRACKER
-Real-Time Resource Monitor for StrategicKhaos Ecosystem Genome
+Real-Time Resource Monitor for Strategickhaos Ecosystem Genome
 
 Like htop, but for your empire's evolutionary state.
 Tracks mutations, fitness scores, gene expression levels in real-time.
@@ -80,7 +80,7 @@ class Mutation:
 
 @dataclass
 class EmpireGenome:
-    """The complete genome of the StrategicKhaos Empire"""
+    """The complete genome of the Strategickhaos Empire"""
     version: str
     generation: int
     birth_date: str
