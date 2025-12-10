@@ -21,7 +21,6 @@ from reportlab.platypus import (
 )
 from reportlab.lib import colors
 from datetime import datetime
-import json
 import os
 
 # ============================================================================
