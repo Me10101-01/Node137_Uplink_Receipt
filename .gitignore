@@ -1,7 +1,8 @@
+.obsidian/
+*.iso
+*.swp
 .codegeex/
 .ollama/
-.idea/
 .ipfs/
 .vscode/
-node_modules/
-*.swp
+.idea/
